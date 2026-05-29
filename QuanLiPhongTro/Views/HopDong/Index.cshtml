@@ -1,0 +1,61 @@
+﻿@model System.Data.DataTable
+@{
+    ViewData["Title"] = "Quản lý hợp đồng"; Layout = "_Layout";
+}
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+        <p class="text-xs font-bold text-gray-400 uppercase">Hợp đồng hiệu lực</p>
+        <h3 class="text-3xl font-bold text-gray-800">@(Model?.Select("TrangThai='Hiệu lực'").Length ?? 0)</h3>
+    </div>
+    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+        <p class="text-xs font-bold text-gray-400 uppercase">Sắp hết hạn</p>
+        <h3 class="text-3xl font-bold text-orange-500">@(Model?.Select("TrangThai='Sắp hết hạn'").Length ?? 0)</h3>
+    </div>
+    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+        <p class="text-xs font-bold text-gray-400 uppercase">Kết thúc tháng này</p>
+        <h3 class="text-3xl font-bold text-red-500">0</h3>
+    </div>
+</div>
+
+<div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+    <div class="p-4 border-b border-gray-100 flex gap-4">
+        <form method="get" class="flex gap-2 w-full">
+            <input name="search" class="px-4 py-2 border rounded-lg w-64 text-sm" placeholder="Tìm tên khách, mã phòng..." />
+            <select name="status" class="px-4 py-2 border rounded-lg text-sm">
+                <option value="">Tất cả</option>
+                <option value="Hiệu lực">Hiệu lực</option>
+                <option value="Sắp hết hạn">Sắp hết hạn</option>
+            </select>
+            <button type="submit" class="bg-primary text-white px-4 py-2 rounded-lg text-sm">Lọc</button>
+        </form>
+    </div>
+
+    <table class="w-full text-sm">
+        <thead class="bg-gray-50 text-gray-500 uppercase text-xs">
+            <tr>
+                <th class="px-6 py-3">Khách thuê</th>
+                <th class="px-6 py-3">Phòng</th>
+                <th class="px-6 py-3">Thời hạn</th>
+                <th class="px-6 py-3">Trạng thái</th>
+                <th class="px-6 py-3 text-right">Thao tác</th>
+            </tr>
+        </thead>
+        <tbody class="divide-y">
+            @foreach (System.Data.DataRow row in Model.Rows)
+            {
+                <tr>
+                    <td class="px-6 py-4 font-bold">@row["HoTen"]</td>
+                    <td class="px-6 py-4">@row["TenPhong"]</td>
+                    <td class="px-6 py-4 text-gray-500">@Convert.ToDateTime(row["NgayBatDau"]).ToString("dd/MM/yyyy") - @Convert.ToDateTime(row["NgayKetThuc"]).ToString("dd/MM/yyyy")</td>
+                    <td class="px-6 py-4">
+                        <span class="px-2 py-1 rounded text-[10px] font-bold uppercase @(row["TrangThai"].ToString() == "Hiệu lực" ? "bg-green-100 text-green-700" : "bg-orange-100 text-orange-700")">@row["TrangThai"]</span>
+                    </td>
+                    <td class="px-6 py-4 text-right">
+                        <a href="/HopDong/Details?id=@row["MaHopDong"]" class="text-blue-600 hover:underline">Xem chi tiết</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

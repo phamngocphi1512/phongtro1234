@@ -1,0 +1,45 @@
+﻿@model System.Data.DataRow
+@{
+    ViewData["Title"] = "Chi tiết Hợp đồng";
+    Layout = "_Layout";
+}
+
+<div class="max-w-4xl mx-auto bg-white p-8 rounded-xl shadow-sm border border-gray-100 mt-6">
+    <div class="border-b pb-6 mb-6">
+        <h2 class="text-2xl font-bold text-gray-800">Chi tiết Hợp đồng: @Model["MaHopDong"]</h2>
+        <p class="text-gray-500">Mã sinh viên thực hiện: @ViewBag.StudentID</p>
+    </div>
+
+    <div class="grid grid-cols-2 gap-8">
+        <div>
+            <label class="text-xs font-bold text-gray-400 uppercase">Khách thuê</label>
+            <p class="text-lg font-medium text-gray-800">@Model["HoTen"]</p>
+        </div>
+        <div>
+            <label class="text-xs font-bold text-gray-400 uppercase">Phòng thuê</label>
+            <p class="text-lg font-medium text-gray-800">@Model["TenPhong"]</p>
+        </div>
+        <div>
+            <label class="text-xs font-bold text-gray-400 uppercase">Ngày bắt đầu</label>
+            <p class="text-lg font-medium">@Convert.ToDateTime(Model["NgayBatDau"]).ToString("dd/MM/yyyy")</p>
+        </div>
+        <div>
+            <label class="text-xs font-bold text-gray-400 uppercase">Ngày kết thúc</label>
+            <p class="text-lg font-medium">@Convert.ToDateTime(Model["NgayKetThuc"]).ToString("dd/MM/yyyy")</p>
+        </div>
+        <div>
+            <label class="text-xs font-bold text-gray-400 uppercase">Tiền cọc</label>
+            <p class="text-lg font-medium text-primary font-bold">@string.Format("{0:N0} VNĐ", Model["TienCoc"])</p>
+        </div>
+        <div>
+            <label class="text-xs font-bold text-gray-400 uppercase">Trạng thái</label>
+            <span class="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase @(Model["TrangThai"].ToString() == "Hiệu lực" ? "bg-green-100 text-green-700" : "bg-orange-100 text-orange-700")">
+                @Model["TrangThai"]
+            </span>
+        </div>
+    </div>
+
+    <div class="mt-10 pt-6 border-t flex gap-4">
+        <a href="/HopDong/Index" class="px-6 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm font-bold transition-colors">Quay lại danh sách</a>
+    </div>
+</div>

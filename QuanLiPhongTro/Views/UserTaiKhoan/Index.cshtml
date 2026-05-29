@@ -1,0 +1,86 @@
+﻿@{
+    ViewData["Title"] = "Hồ sơ cá nhân";
+    Layout = "_UserLayout";
+}
+
+<div class="mb-8">
+    <h2 class="text-3xl font-bold text-on-surface">Hồ sơ cá nhân</h2>
+    <p class="text-base text-on-surface-variant mt-1">Quản lý thông tin tài khoản và bảo mật của bạn.</p>
+</div>
+
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <div class="lg:col-span-1 space-y-6">
+        <div class="bg-white rounded-xl border border-gray-200 shadow-sm p-8 text-center">
+            <div class="relative w-32 h-32 mx-auto mb-4">
+                <div class="w-full h-full rounded-full bg-blue-100 text-primary flex items-center justify-center text-4xl font-bold border-4 border-white shadow-md">
+                    U
+                </div>
+                <button class="absolute bottom-0 right-0 w-10 h-10 bg-primary text-white rounded-full border-4 border-white flex items-center justify-center hover:bg-primary/90 transition-colors">
+                    <span class="material-symbols-outlined text-[20px]">photo_camera</span>
+                </button>
+            </div>
+            <h3 class="text-xl font-bold text-on-surface">Alex Nguyen</h3>
+            <p class="text-sm text-gray-500">Khách thuê phòng</p>
+            <div class="mt-6 pt-6 border-t border-gray-100">
+                <div class="flex items-center justify-between text-sm mb-3">
+                    <span class="text-gray-500">Trạng thái:</span>
+                    <span class="font-bold text-green-600">Đang hoạt động</span>
+                </div>
+                <div class="flex items-center justify-between text-sm">
+                    <span class="text-gray-500">Ngày tham gia:</span>
+                    <span class="font-bold text-on-surface">15/08/2023</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
+            <h4 class="font-bold text-on-surface mb-4 flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary">security</span>
+                Bảo mật tài khoản
+            </h4>
+            <button class="w-full py-2.5 border border-gray-200 text-gray-700 rounded-lg text-sm font-bold hover:bg-gray-50 transition-colors flex items-center justify-center gap-2 mb-3">
+                Đổi mật khẩu
+            </button>
+            <button class="w-full py-2.5 border border-red-200 text-red-600 rounded-lg text-sm font-bold hover:bg-red-50 transition-colors flex items-center justify-center gap-2">
+                Xóa tài khoản
+            </button>
+        </div>
+    </div>
+
+    <div class="lg:col-span-2">
+        <div class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+            <div class="p-6 border-b border-gray-100 bg-gray-50/50">
+                <h3 class="text-lg font-bold text-on-surface">Thông tin chi tiết</h3>
+            </div>
+            <div class="p-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-2">
+                        <label class="text-xs font-bold text-gray-500 uppercase">Họ và tên</label>
+                        <input type="text" value="Alex Nguyen" class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none">
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-xs font-bold text-gray-500 uppercase">Số điện thoại</label>
+                        <input type="text" value="0901 234 567" class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none">
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-xs font-bold text-gray-500 uppercase">Email</label>
+                        <input type="email" value="alex.nguyen@example.com" class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none">
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-xs font-bold text-gray-500 uppercase">Số CCCD</label>
+                        <input type="text" value="079123456789" class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none">
+                    </div>
+                    <div class="md:col-span-2 space-y-2">
+                        <label class="text-xs font-bold text-gray-500 uppercase">Quê quán (Địa chỉ thường trú)</label>
+                        <input type="text" value="Quận 1, TP. Hồ Chí Minh" class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none">
+                    </div>
+                </div>
+
+                <div class="mt-10 pt-6 border-t border-gray-100 flex justify-end gap-3">
+                    <button class="px-6 py-2 border border-gray-300 text-gray-600 rounded-lg font-bold hover:bg-gray-50 transition-colors">Hủy bỏ</button>
+                    <button class="px-6 py-2 bg-primary text-white rounded-lg font-bold hover:bg-primary/90 transition-all shadow-md">Lưu thay đổi</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

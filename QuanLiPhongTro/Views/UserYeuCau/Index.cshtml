@@ -1,0 +1,107 @@
+﻿@{
+    ViewData["Title"] = "Yêu cầu sửa chữa";
+    Layout = "_UserLayout";
+}
+
+<div class="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+    <div>
+        <h2 class="text-3xl font-bold text-on-surface">Yêu cầu sửa chữa</h2>
+        <p class="text-base text-on-surface-variant mt-1">Gửi thông tin hư hỏng để chúng tôi hỗ trợ xử lý kịp thời.</p>
+    </div>
+    <button class="bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-xl font-bold transition-all shadow-md flex items-center gap-2 w-fit">
+        <span class="material-symbols-outlined">add_circle</span>
+        Tạo yêu cầu mới
+    </button>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+    <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm text-center">
+        <p class="text-xs font-bold text-gray-500 uppercase">Tất cả</p>
+        <p class="text-2xl font-bold text-on-surface">3</p>
+    </div>
+    <div class="bg-blue-50 p-4 rounded-xl border border-blue-100 shadow-sm text-center">
+        <p class="text-xs font-bold text-primary uppercase">Đang chờ</p>
+        <p class="text-2xl font-bold text-primary">1</p>
+    </div>
+    <div class="bg-orange-50 p-4 rounded-xl border border-orange-100 shadow-sm text-center">
+        <p class="text-xs font-bold text-orange-600 uppercase">Đang xử lý</p>
+        <p class="text-2xl font-bold text-orange-600">1</p>
+    </div>
+    <div class="bg-green-50 p-4 rounded-xl border border-green-100 shadow-sm text-center">
+        <p class="text-xs font-bold text-green-700 uppercase">Đã xong</p>
+        <p class="text-2xl font-bold text-green-700">1</p>
+    </div>
+</div>
+
+<div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+    <div class="p-6 border-b border-gray-100 bg-gray-50/50">
+        <h3 class="text-lg font-bold text-on-surface flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary">build</span>
+            Lịch sử yêu cầu
+        </h3>
+    </div>
+
+    <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+            <thead>
+                <tr class="bg-gray-50 border-b border-gray-200 text-xs uppercase text-gray-500 font-bold tracking-wider">
+                    <th class="p-4">Ngày gửi</th>
+                    <th class="p-4">Vấn đề</th>
+                    <th class="p-4">Mức độ</th>
+                    <th class="p-4 text-center">Trạng thái</th>
+                    <th class="p-4 text-center">Thao tác</th>
+                </tr>
+            </thead>
+            <tbody class="text-sm text-gray-700 divide-y divide-gray-100">
+                <tr class="hover:bg-gray-50 transition-colors">
+                    <td class="p-4">12/11/2023</td>
+                    <td class="p-4">
+                        <p class="font-bold text-on-surface">Vòi nước bị rò rỉ</p>
+                        <p class="text-xs text-gray-500">Khu vực nhà vệ sinh</p>
+                    </td>
+                    <td class="p-4">
+                        <span class="px-2 py-0.5 bg-yellow-100 text-yellow-700 text-[10px] font-bold rounded uppercase">Bình thường</span>
+                    </td>
+                    <td class="p-4 text-center">
+                        <span class="px-3 py-1 bg-blue-100 text-primary text-xs font-bold rounded-full">Đang chờ</span>
+                    </td>
+                    <td class="p-4 text-center">
+                        <button class="text-gray-400 hover:text-primary transition-colors"><span class="material-symbols-outlined">visibility</span></button>
+                    </td>
+                </tr>
+                <tr class="hover:bg-gray-50 transition-colors">
+                    <td class="p-4">05/11/2023</td>
+                    <td class="p-4">
+                        <p class="font-bold text-on-surface">Bóng đèn phòng khách hỏng</p>
+                        <p class="text-xs text-gray-500">Cần thay bóng mới</p>
+                    </td>
+                    <td class="p-4">
+                        <span class="px-2 py-0.5 bg-gray-100 text-gray-600 text-[10px] font-bold rounded uppercase">Thấp</span>
+                    </td>
+                    <td class="p-4 text-center">
+                        <span class="px-3 py-1 bg-orange-100 text-orange-700 text-xs font-bold rounded-full">Đang xử lý</span>
+                    </td>
+                    <td class="p-4 text-center">
+                        <button class="text-gray-400 hover:text-primary transition-colors"><span class="material-symbols-outlined">visibility</span></button>
+                    </td>
+                </tr>
+                <tr class="hover:bg-gray-50 transition-colors">
+                    <td class="p-4">20/10/2023</td>
+                    <td class="p-4">
+                        <p class="font-bold text-on-surface">Máy lạnh không mát</p>
+                        <p class="text-xs text-gray-500">Đã vệ sinh lọc nhưng vẫn không mát</p>
+                    </td>
+                    <td class="p-4">
+                        <span class="px-2 py-0.5 bg-red-100 text-red-700 text-[10px] font-bold rounded uppercase">Khẩn cấp</span>
+                    </td>
+                    <td class="p-4 text-center">
+                        <span class="px-3 py-1 bg-green-100 text-green-700 text-xs font-bold rounded-full">Đã hoàn thành</span>
+                    </td>
+                    <td class="p-4 text-center">
+                        <button class="text-gray-400 hover:text-primary transition-colors"><span class="material-symbols-outlined">visibility</span></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

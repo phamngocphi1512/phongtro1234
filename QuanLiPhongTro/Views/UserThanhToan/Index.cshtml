@@ -1,0 +1,101 @@
+﻿@using System.Data
+@model DataTable
+@{
+    ViewData["Title"] = "Lịch sử thanh toán";
+    Layout = "_UserLayout"; // Kết nối với file Layout dùng chung
+
+    decimal daThanhToan = ViewBag.TongDaThanhToan ?? 0;
+    decimal chuaThanhToan = ViewBag.ChuaThanhToan ?? 0;
+    decimal tongHoaDon = daThanhToan + chuaThanhToan;
+}
+
+<div class="max-w-6xl mx-auto space-y-6">
+    <div>
+        <h1 class="text-3xl font-bold text-on-surface">Lịch sử thanh toán</h1>
+        <p class="text-base text-gray-500 mt-1">Quản lý và theo dõi các hóa đơn của bạn.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white rounded-xl p-5 shadow-sm border border-gray-200 flex items-center gap-4">
+            <div class="w-12 h-12 rounded-full bg-[#e0f2fe] flex items-center justify-center text-primary">
+                <span class="material-symbols-outlined">account_balance_wallet</span>
+            </div>
+            <div>
+                <p class="text-xs text-gray-500 uppercase tracking-wider font-semibold">Tổng hóa đơn</p>
+                <p class="text-2xl font-bold text-gray-900 mt-1">@tongHoaDon.ToString("N0") ₫</p>
+            </div>
+        </div>
+        <div class="bg-white rounded-xl p-5 shadow-sm border border-gray-200 flex items-center gap-4">
+            <div class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center text-gray-700">
+                <span class="material-symbols-outlined">check_circle</span>
+            </div>
+            <div>
+                <p class="text-xs text-gray-500 uppercase tracking-wider font-semibold">Đã thanh toán</p>
+                <p class="text-2xl font-bold text-gray-900 mt-1">@daThanhToan.ToString("N0") ₫</p>
+            </div>
+        </div>
+        <div class="bg-white rounded-xl p-5 shadow-sm border border-gray-200 flex items-center gap-4 relative overflow-hidden">
+            <div class="absolute inset-0 bg-red-50"></div>
+            <div class="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center text-red-600 relative z-10">
+                <span class="material-symbols-outlined">warning</span>
+            </div>
+            <div class="relative z-10">
+                <p class="text-xs text-red-600 uppercase tracking-wider font-semibold">Còn nợ</p>
+                <p class="text-2xl font-bold text-gray-900 mt-1">@chuaThanhToan.ToString("N0") ₫</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+        <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+                <thead>
+                    <tr class="border-b border-gray-200 bg-gray-50">
+                        <th class="px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">Mã hóa đơn</th>
+                        <th class="px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">Phòng</th>
+                        <th class="px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">Hạn thanh toán</th>
+                        <th class="px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">Số tiền</th>
+                        <th class="px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">Trạng thái</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-100">
+                    @if (Model != null && Model.Rows.Count > 0)
+                    {
+                        foreach (DataRow row in Model.Rows)
+                        {
+                            string trangThai = row["TrangThai"].ToString();
+                            bool isDaThanhToan = trangThai.Contains("Đã thanh toán") || trangThai.Contains("ĐÃ THANH TOÁN");
+
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="px-6 py-4 text-sm font-medium">@row["MaHoaDon"]</td>
+                                <td class="px-6 py-4 text-sm text-gray-500">@row["TenPhong"]</td>
+                                <td class="px-6 py-4 text-sm text-gray-500">@(row["HanThanhToan"] != DBNull.Value ? Convert.ToDateTime(row["HanThanhToan"]).ToString("dd/MM/yyyy") : "")</td>
+                                <td class="px-6 py-4 text-sm font-medium">@Convert.ToDecimal(row["TongTien"]).ToString("N0") ₫</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    @if (isDaThanhToan)
+                                    {
+                                        <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-600">
+                                            Đã thanh toán
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-red-100 text-red-600">
+                                            Chưa thanh toán
+                                        </span>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="5" class="px-6 py-8 text-center text-gray-500">Bạn chưa có hóa đơn nào.</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
